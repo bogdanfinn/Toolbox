@@ -152,7 +152,7 @@ def ACCOUNTFINDER():
     if INPUT == '1':
         pass
     if INPUT == '2':
-        pass
+        instagram_xx(name)
     if INPUT.lower() == 'b':
         go_back()
     if INPUT.lower() == 'q':
