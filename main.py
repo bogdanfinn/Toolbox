@@ -145,4 +145,4 @@ def go_main():
 
 
 if __name__ == '__main__':
-    DOMAINSPOOF()
+    main()
