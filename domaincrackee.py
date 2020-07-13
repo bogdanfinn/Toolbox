@@ -68,7 +68,16 @@ def get_Proxy():
 
 
 
-def connect_test(PROXYS):
+def connect_test(FILE):
+    PROXYS = []
+    try:
+        f = open(FILE, 'r')
+    except:
+        print("{}FILE NOT FOUND{}".format(RED,END))
+        return
+    text = f.readlines()
+    for line in text:
+        PROXYS.append(line.strip())
     for proxy in PROXYS:
          print('{}Thread starting..{}'.format(YELLOW, END))
          t = threading.Thread(target=testing(proxy))
@@ -119,14 +128,25 @@ def start(PROXIES, AMP, CODES, URL, TYPE, WORDLIST = None):
     TEXT = file.readlines()
     for line in TEXT:
         WORDS.append(line.strip())
-    Threadsrun = round(len(WORDS)/AMP)
-    for i in range(Threadsrun):
-        print('{}{} Thread starting..{}'.format(YELLOW,i,END))
-        t = threading.Thread(target=attack(PROXIES[i], CODES, WORDS[(i*AMP):((i+1) * AMP)], URL, TYPE))
-        t.start()
-        threadsonline2.append(t)
-    for t in threadsonline2:
-        t.join()
+    if not TYPE == 3:
+        Threadsrun = round(len(WORDS)/AMP)
+        for i in range(Threadsrun):
+            print('{}{} Thread starting..{}'.format(YELLOW,i,END))
+            t = threading.Thread(target=attack(CODES, WORDS[(i*AMP):((i+1) * AMP)], URL, TYPE,PROXIES[i]))
+            t.start()
+            threadsonline2.append(t)
+        for t in threadsonline2:
+            t.join()
+    else:
+        Threadsrun = round(len(WORDS) / AMP)
+        for i in range(Threadsrun):
+            print('{}{} Thread starting..{}'.format(YELLOW, i, END))
+            t = threading.Thread(target=attack(CODES, WORDS[(i * AMP):((i + 1) * AMP)], URL, TYPE))
+            t.start()
+            threadsonline2.append(t)
+        for t in threadsonline2:
+            t.join()
+
     exit('{}[FINISHED] {} URLS FOUND{}'.format(MAGENTA,len(WORKINGURL),END))
 
 
@@ -136,7 +156,7 @@ def start(PROXIES, AMP, CODES, URL, TYPE, WORDLIST = None):
 
 
 
-def attack(PROXY, CODES, WORDS, URL, TYPE):
+def attack(CODES, WORDS, URL, TYPE, PROXY = None):
     if TYPE == 0:
         proxies = {
             'http': 'http://{}'.format(PROXY),
