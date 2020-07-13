@@ -1,9 +1,10 @@
 import os
-import domaincrackee
+import domaincrackee, instagram
 import time
+import threading
 
 
-#colors
+# colors
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, END = '\33[94m', '\033[91m', '\33[97m', '\33[93m', '\033[1;35m', '\033[1;32m', '\033[0m'
 CHOICE1 = ['1','2','3','4']
 CHOICE2 = ['1','2','3', '0']
@@ -31,7 +32,7 @@ def main():
         banner()
 
         print('''
-        [1] {}InstagramAccs{}        [2] {}subDomainSpoof{}
+        [1] {}InstagramAccsfinder{}  [2] {}subDomainSpoof{}
         [3] {}ProxyGenerator{}       [4] {}ProxyTester{}
         
         
@@ -131,6 +132,49 @@ def PROXYGEN():
         print('{}Going back to main menu..{}'.format(BLUE,END))
         time.sleep(2)
         main()
+
+def ACCOUNTFINDER():
+    clear()
+    banner()
+    name = input("{}Type in the Real-Life Name of your Person{}".format(RED,END))
+    clear()
+    banner()
+    print('''
+        {}What do you want to use find the Account from {}?{}
+        
+        [1] {}ALL(CAN TAKE LONG TIME!){} 
+            ..aktivate all..
+        [2] {}{}xxxx..{}
+            ..brute-force letters behind the name with a custom length..
+        
+    '''.format(BLUE,name,END,BLUE,END,BLUE,name,END))
+    INPUT = input('{}Choose >> {}'.format(RED,END))
+    if INPUT == '1':
+        pass
+    if INPUT == '2':
+        pass
+    if INPUT.lower() == 'b':
+        go_back()
+    if INPUT.lower() == 'q':
+        close()
+    else:
+        go_back()
+
+def instagram_xx(name):
+    clear()
+    banner()
+    leng = input('{}Which length of Char after the name ({}xxx..){}'.format(RED,name,END))
+    try:
+        leng = int(leng)
+    except:
+        instagram_xx(name)
+    instagram.namewithi(name,leng)
+
+
+
+
+
+
 
 def go_back():
     main()
