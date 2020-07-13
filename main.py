@@ -42,7 +42,7 @@ def main():
         EINGABE = input('{}Type your choice >> {}'.format(RED,END))
         if EINGABE in CHOICE1 or EINGABE in NAVI:
             if EINGABE == '1':
-                pass
+                ACCOUNTFINDER()
             if EINGABE == '2':
                 DOMAINSPOOF()
             if EINGABE == '3':
