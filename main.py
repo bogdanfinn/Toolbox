@@ -136,7 +136,7 @@ def PROXYGEN():
 def ACCOUNTFINDER():
     clear()
     banner()
-    name = input("{}Type in the Real-Life Name of your Person{}".format(RED,END))
+    name = input("{}Type in the Real-Life Name of your Person >> {}".format(RED,END))
     clear()
     banner()
     print('''
