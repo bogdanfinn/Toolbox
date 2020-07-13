@@ -163,7 +163,7 @@ def ACCOUNTFINDER():
 def instagram_xx(name):
     clear()
     banner()
-    leng = input('{}Which length of Char after the name ({}xxx..){}'.format(RED,name,END))
+    leng = input('{}Which length of Char after the name ({}xxx..) >> {}'.format(RED,name,END))
     try:
         leng = int(leng)
     except:
